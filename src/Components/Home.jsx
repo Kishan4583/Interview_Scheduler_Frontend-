@@ -27,7 +27,7 @@ export default function Home() {
   useEffect(() => {
     async function getAllUsers() {
       try {
-        const Users = await axios.get("http://127.0.0.1:8000/manageusers/");
+        const Users = await axios.get("http://43.205.111.234/manageusers/");
         setUsers(Users.data);
       } catch (error) {
         console.log(error);
@@ -50,7 +50,7 @@ export default function Home() {
 
   // Submit schedule interview
   const InterviewSubmit = () => {
-    fetch("http://127.0.0.1:8000/manageInterviews/", {
+    fetch("http://43.205.111.234/manageInterviews/", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -61,33 +61,20 @@ export default function Home() {
         endTime: endTime,
         participants: participant,
       }),
-    })
-      .then((response,error) => {
+    }).then(response=>response.json())
+      .then((response) => {
         if (response.status == 201) {
           alert("Wow You have added an another Interview!");
           window.location.reload(true);
         } else {
-          // alert("Please recheck the data entered for scheduling the interview.");
-          // alert(response);
-          // console.log("Error in data")
-          console.log(error)
-          var message = JSON.stringify(error.response.data);
-          message = message.replace(/,/g, "\n");
-          message = message.replace(/{/g, "");
-          message = message.replace(/}/g, "");
-          message = message.replace(/\[/g, "");
-          message = message.replace(/\]/g, "");
-          message = message.replace(/\"/g, "");
-          // var errorhandlerobj = new Errorhandler(error);
-          // errorhandlerobj.showalert(null);
-          alert(message);
-          console.log(message);
-          console.log(response);
+          let key  = Object.keys(response)[0];
+          var value = response[key][0];
+          console.log(value);
+          alert(value);
         }
       })
       .catch((error) => {
         console.error(error);
-        // alert(error);
       });
   };
 

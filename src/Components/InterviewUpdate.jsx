@@ -45,7 +45,7 @@ export default function Interviewupdate() {
   useEffect(() => {
     async function getAllUsers() {
       try {
-        const Users = await axios.get("http://127.0.0.1:8000/manageusers/");
+        const Users = await axios.get("http://43.205.111.234/manageusers/");
         console.log(Users.data);
         setUsers(Users.data);
       } catch (error) {
@@ -59,7 +59,7 @@ export default function Interviewupdate() {
     async function getUser() {
       try {
         const Users = await axios.get(
-          `http://127.0.0.1:8000/manageInterviews/${ID}/`
+          `http://43.205.111.234/manageInterviews/${ID}/`
         );
         console.log(Users.data);
         setParticipant(Users.data.participants);
@@ -74,7 +74,7 @@ export default function Interviewupdate() {
 
   // Update interview 
   const InterviewUpdateSubmit = () => {
-    fetch(`http://127.0.0.1:8000/manageInterviews/${id}/`, {
+    fetch(`http://43.205.111.234/manageInterviews/${id}/`, {
       method: "PUT",
       headers: {
         Accept: "application/json",

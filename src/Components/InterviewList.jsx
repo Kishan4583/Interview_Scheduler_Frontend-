@@ -12,7 +12,7 @@ export default function InterviewList() {
     async function getAllinterviews() {
       try {
         const interviews = await axios.get(
-          "http://127.0.0.1:8000/manageInterviews/"
+          "http://43.205.111.234/manageInterviews/"
         );
         setItrList(interviews.data);
       } catch (error) {
